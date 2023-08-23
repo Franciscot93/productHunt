@@ -32,6 +32,7 @@ const useValidation = (stateInicial,validar,fn) => {
         const erroresValidacion=validar(valores);
         setErrores(erroresValidacion)
         setSubmitForm(true)
+        console.log(valores.nombre, valores.email,valores.password);
     }
     
     const handleBlur=(e)=>{

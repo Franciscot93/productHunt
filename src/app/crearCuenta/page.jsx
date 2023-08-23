@@ -1,20 +1,21 @@
 'use client'
 import Formulario from "../components/ui/Formulario";
+import { registrar } from "../firebase/firebase";
 
 //validaciones
 
 import useValidation from "../hooks/useValidation";
 import validarCrearCuenta from "../validacion/validarCrearCuenta";
-const STATE_INICIAL={
-  nombre:'',
-  email:'',
-  password:''
-}
+
 
 function CrearCuenta() {
- 
-  const crearCuenta=()=>{
-    console.log('creando cuenta')
+  const STATE_INICIAL={
+    nombre:'',
+    email:'',
+    password:''
+  }
+  const crearCuenta=async()=>{
+    await registrar(nombre.value,email.value,password.value)
   }
 
   const{valores,
