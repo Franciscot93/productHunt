@@ -1,4 +1,5 @@
 'use client'
+import { useState } from "react";
 import Formulario from "../components/ui/Formulario";
 import { registrar } from "../firebase/firebase";
 
@@ -6,16 +7,26 @@ import { registrar } from "../firebase/firebase";
 
 import useValidation from "../hooks/useValidation";
 import validarCrearCuenta from "../validacion/validarCrearCuenta";
+import { useRouter } from 'next/navigation'
 
 
 function CrearCuenta() {
+  const router=useRouter()
+  const [errorRegistro,setErrorRegistro]=useState(null)
   const STATE_INICIAL={
     nombre:'',
     email:'',
     password:''
   }
   const crearCuenta=async()=>{
-    await registrar(nombre.value,email.value,password.value)
+    try {
+      await registrar(nombre.value,email.value,password.value,setErrorRegistro)
+      router.push('/')
+    } catch  (error) {
+      console.error('Hubo un error al crear el usuario',error)
+      return setErrorRegistro(error.message)
+    }
+    
   }
 
   const{valores,
@@ -28,7 +39,7 @@ function CrearCuenta() {
   return (
     <div >
       <h1 className="font-bold text-4xl text-center mt-[2.5rem]">Crear cuenta</h1>
-      
+      {errorRegistro!=null&&(<div className=" text-center font-semibold flex-1 p-1"><p className="text-red-600">{errorRegistro}</p></div>) }
       <Formulario handleBlur={handleBlur} errores={errores}  valores={valores} handleChange={handleChange} handleSubmit={handleSubmit}/>
     </div>
   );
