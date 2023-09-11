@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react";
 import FormularioLogin from "../components/ui/FormularioLogin";
-import { login } from "../firebase/firebase";
+import { useFirebase } from "../store/useFirebase";
 
 //validaciones
 
@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 
 
 function Login() {
+  const{login}=useFirebase()
   const [errorLogin,setErrorLogin]=useState(null) 
   const STATE_INICIAL={
     

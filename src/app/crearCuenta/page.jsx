@@ -1,17 +1,19 @@
 'use client'
 import { useState } from "react";
 import Formulario from "../components/ui/Formulario";
-import { registrar } from "../firebase/firebase";
+
 
 //validaciones
 
 import useValidation from "../hooks/useValidation";
 import validarCrearCuenta from "../validacion/validarCrearCuenta";
 import { useRouter } from 'next/navigation'
+import { useFirebase } from "../store/useFirebase";
 
 
 function CrearCuenta() {
   const router=useRouter()
+  const {registrar}=useFirebase ()
   const [errorRegistro,setErrorRegistro]=useState(null)
   const STATE_INICIAL={
     nombre:'',
