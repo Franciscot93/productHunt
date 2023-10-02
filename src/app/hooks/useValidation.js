@@ -21,6 +21,7 @@ const useValidation = (stateInicial,validar,fn) => {
 
         // se ejecuta cuando el user escribe algo
     const handleChange=(e)=>{
+         
         setValores({
             ...valores,[e.target.name]:e.target.value
         })

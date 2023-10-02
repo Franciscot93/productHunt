@@ -40,7 +40,7 @@ function CrearCuenta() {
   
   return (
     <div >
-      <h1 className="font-bold text-4xl text-center mt-[2.5rem]">Crear cuenta</h1>
+      <h1 className="font-bold text-4xl text-center text-slate-50 mt-[2.5rem]">Crear cuenta</h1>
       {errorRegistro!=null&&(<div className=" text-center font-semibold flex-1 p-1"><p className="text-red-600">{errorRegistro}</p></div>) }
       <Formulario handleBlur={handleBlur} errores={errores}  valores={valores} handleChange={handleChange} handleSubmit={handleSubmit}/>
     </div>

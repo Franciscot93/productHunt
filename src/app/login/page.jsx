@@ -27,10 +27,15 @@ function Login() {
    const iniciarSesion=async()=>{
    try{ console.log('iniciando...')
     await login(valores.email,valores.password,setErrorLogin)
-    router.push('/')
+    //isLogged(valores.email,valores.password)
+    if(errorLogin!=null){
+      router.push('/')
+    }
+   
   }
     catch(error){
       console.error(error)
+      setErrorLogin(error.messagge)
     }
     
   }
@@ -40,7 +45,7 @@ function Login() {
     handleChange,handleBlur}=useValidation(STATE_INICIAL,validarLogin,iniciarSesion)
   return (
     <div >
-      <h1 className="font-bold text-4xl text-center mt-[2.5rem]">Login</h1>
+      <h1 className="font-bold text-4xl text-slate-50 text-center mt-[2.5rem]">Login</h1>
       {errorLogin!=null&&(<div className=" text-center font-semibold flex-1 p-1"><p className="text-red-600">{errorLogin}</p></div>) }
       <FormularioLogin handleBlur={handleBlur} errores={errores}  valores={valores} handleChange={handleChange} handleSubmit={handleSubmit}/>
     </div>
